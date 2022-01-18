@@ -1,38 +1,24 @@
-<p align="center"><img src="https://i.imgur.com/NZfsD1p.png"></p>
+<p align="center"><img src="https://www.arabian-vacc.com/assets/img/logo.png"></p>
 
-## Usage
+## Install
 
-### Create an App
+### Via GitHub
 
-```
-# with npx
-$ npx create-nextron-app my-app --example with-typescript
+- Go to the [releases](https://github.com/SamHep0803/wasta/releases) section of this repository.
+- Download the latest version of the application depending on your operating system.
+- Run the installer, or if you're on a Mac, open the .dmg and drag the application to your applications folder.
 
-# with yarn
-$ yarn create nextron-app my-app --example with-typescript
+## Contributing
 
-# with pnpx
-$ pnpx create-nextron-app my-app --example with-typescript
-```
-
-### Install Dependencies
+### Clone repo & Install Dependencies
 
 ```
-$ cd my-app
+# clone repo
+$ git clone https://github.com/SamHep0803/wasta.git
 
 # using yarn or npm
 $ yarn (or `npm install`)
 
-# using pnpm
-$ pnpm install --shamefully-hoist
-```
-
-### Use it
-
-```
-# development mode
-$ yarn dev (or `npm run dev` or `pnpm run dev`)
-
-# production build
-$ yarn build (or `npm run build` or `pnpm run build`)
+# run dev enviroment
+$ yarn dev
 ```
