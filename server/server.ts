@@ -31,6 +31,19 @@ export const startServer = async () => {
 			});
 	});
 
+	server.get("/getOnlinevACCATC", (req, res) => {
+		const url = "https://data.vatsim.net/v3/vatsim-data.json";
+
+		axios
+			.get(url)
+			.then((response) => {
+				res.json(response.data);
+			})
+			.catch((error) => {
+				res.send(error);
+			});
+	});
+
 	server.get("/authx", (_req, _res) => {
 		console.log("tahwsfawuihefuiaf");
 	});

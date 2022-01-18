@@ -20,8 +20,8 @@ let config;
 	await app.whenReady();
 
 	const mainWindow = createWindow("main", {
-		width: 1000,
-		height: 600,
+		width: 1100,
+		height: 700,
 		frame: false,
 		resizable: false,
 	});
