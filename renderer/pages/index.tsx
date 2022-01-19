@@ -14,9 +14,18 @@ const IndexPage = () => {
 			window.location.href = "/login";
 		}
 		setUser(JSON.parse(window.localStorage.getItem("user")));
+
+		getOnline();
+		setInterval(async () => {
+			getOnline();
+		}, 15000);
 	}, []);
 
-	getOnlinevACCATC();
+	const getOnline = async () => {
+		const online = await getOnlinevACCATC();
+		setOnlineATC(online.length);
+		console.log(online.length);
+	};
 
 	if (user) {
 		return (
@@ -31,7 +40,7 @@ const IndexPage = () => {
 						// borderRadius={8}
 					>
 						<Heading size="md" mt={4} ml={6}>
-							UAE ACC Arrivals
+							Arabian vACC
 						</Heading>
 					</Flex>
 				</Flex>
