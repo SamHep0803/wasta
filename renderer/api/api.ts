@@ -3,6 +3,7 @@ import { Controller } from "../interfaces/Controller";
 import { Pilot } from "../interfaces/Pilot";
 import { User } from "../interfaces/User";
 import { checkCallsign } from "../utils/checkCallsign";
+import { Event } from "../interfaces/Event";
 
 export const getUser = async (accessToken: string): Promise<User | null> => {
 	try {
@@ -39,7 +40,7 @@ export const getOnlinevACCATCAPI = async (): Promise<Controller[]> => {
 	}
 };
 
-export const getDeparturesAPI = async () => {
+export const getDeparturesAPI = async (): Promise<Pilot[]> => {
 	try {
 		const response = await axios.get("http://localhost:18723/getPilots");
 		let departures: Pilot[] = [];
@@ -60,7 +61,7 @@ export const getDeparturesAPI = async () => {
 	}
 };
 
-export const getArrivalsAPI = async () => {
+export const getArrivalsAPI = async (): Promise<Pilot[]> => {
 	try {
 		const response = await axios.get("http://localhost:18723/getPilots");
 		let arrivals: Pilot[] = [];
@@ -76,6 +77,31 @@ export const getArrivalsAPI = async () => {
 			return [];
 		}
 		return arrivals;
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const getEventsAPI = async (): Promise<Event[]> => {
+	try {
+		const response = await axios.get("http://localhost:18723/getEvents");
+		let accEvents: Event[] = [];
+		const events = response.data as Event[];
+		events.forEach((event) => {
+			event.organisers.forEach((organiser) => {
+				if (organiser.division === "MENA") {
+					event.airports.forEach((airport) => {
+						if (checkCallsign(airport.icao)) {
+							accEvents.push(event);
+						}
+					});
+				}
+			});
+		});
+		if (!accEvents) {
+			return [];
+		}
+		return accEvents;
 	} catch (error) {
 		console.error(error);
 	}

@@ -33,7 +33,6 @@ export const startServer = async () => {
 
 	server.get("/getOnlinevACCATC", (req, res) => {
 		const url = "https://data.vatsim.net/v3/vatsim-data.json";
-
 		axios
 			.get(url)
 			.then((response) => {
@@ -46,11 +45,22 @@ export const startServer = async () => {
 
 	server.get("/getPilots", (req, res) => {
 		const url = "https://data.vatsim.net/v3/vatsim-data.json";
-
 		axios
 			.get(url)
 			.then((response) => {
 				res.json(response.data.pilots);
+			})
+			.catch((error) => {
+				res.send(error);
+			});
+	});
+
+	server.get("/getEvents", (req, res) => {
+		const url = "https://my.vatsim.net/api/v1/events/all";
+		axios
+			.get(url)
+			.then((response) => {
+				res.json(response.data.data);
 			})
 			.catch((error) => {
 				res.send(error);

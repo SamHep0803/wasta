@@ -78,7 +78,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
 					mx={6}
 					mb={2}
 				>
-					Dashboard
+					Home
 				</Button>
 			</NextLink>
 			<NextLink href="/briefing">
