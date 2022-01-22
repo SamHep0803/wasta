@@ -68,8 +68,8 @@ const IndexPage = () => {
 						arrivals={arrivals}
 					/>
 					<Flex h="100%" my={4}>
-						<Flex mx={4} backgroundColor="#14141b" w="50%" h="100%"></Flex>
-						<Flex mx={4} backgroundColor="#14141b" w="50%" h="100%"></Flex>
+						<Flex mx={4} backgroundColor="#101116" w="50%" h="100%"></Flex>
+						<Flex mx={4} backgroundColor="#101116" w="50%" h="100%"></Flex>
 					</Flex>
 				</Flex>
 			</Flex>
