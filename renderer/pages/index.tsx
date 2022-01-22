@@ -1,13 +1,12 @@
-import { Flex, Heading, Icon } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { FaPlaneArrival, FaPlaneDeparture } from "react-icons/fa";
-import { MdOutlineRadar } from "react-icons/md";
 import {
 	getArrivalsAPI,
 	getDeparturesAPI,
 	getOnlinevACCATCAPI,
 } from "../api/api";
 import { Sidebar } from "../components/Sidebar";
+import { Summary } from "../components/Summary";
 import { User } from "../interfaces/User";
 
 const IndexPage = () => {
@@ -56,41 +55,21 @@ const IndexPage = () => {
 		return (
 			<Flex overflowY="hidden" h="100%">
 				<Sidebar user={user} />
-				<Flex flex={1} w="100%" h="100%" backgroundColor="#18181f">
-					<Flex
-						w="100%"
-						h={200}
-						m={4}
-						backgroundColor="teal.400"
-						// borderRadius={8}
-						flexDir="column"
-						color="white"
-					>
-						<Flex>
-							<Heading size="lg" mt={4} ml={6} w="100%">
-								Arabian vACC
-							</Heading>
-						</Flex>
-						<Flex alignItems="center" justifyContent="space-between" h="100%">
-							<Flex flexDir="column" w="100%" alignItems="center">
-								<Icon as={MdOutlineRadar} w={14} h={14} color="white" />
-								<Heading size="md" textAlign="center">
-									Online ATC: {onlineATC}
-								</Heading>
-							</Flex>
-							<Flex flexDir="column" w="100%" alignItems="center">
-								<Icon as={FaPlaneDeparture} w={14} h={14} color="white" />
-								<Heading size="md" textAlign="center">
-									Departures: {departures}
-								</Heading>
-							</Flex>
-							<Flex flexDir="column" w="100%" alignItems="center">
-								<Icon as={FaPlaneArrival} w={14} h={14} color="white" />
-								<Heading size="md" textAlign="center">
-									Arrivals: {arrivals}
-								</Heading>
-							</Flex>
-						</Flex>
+				<Flex
+					flex={1}
+					w="100%"
+					h="100%"
+					backgroundColor="#18181f"
+					flexDir="column"
+				>
+					<Summary
+						onlineATC={onlineATC}
+						departures={departures}
+						arrivals={arrivals}
+					/>
+					<Flex h="100%" my={4}>
+						<Flex mx={4} backgroundColor="#14141b" w="50%" h="100%"></Flex>
+						<Flex mx={4} backgroundColor="#14141b" w="50%" h="100%"></Flex>
 					</Flex>
 				</Flex>
 			</Flex>
