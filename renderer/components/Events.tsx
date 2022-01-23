@@ -1,5 +1,5 @@
-import { Flex, Heading, Text } from "@chakra-ui/react";
-import React from "react";
+import { Button, ButtonGroup, Flex, Heading, Text } from "@chakra-ui/react";
+import { useState } from "react";
 import { Event } from "../interfaces/Event";
 
 interface EventsProps {
@@ -7,12 +7,32 @@ interface EventsProps {
 }
 
 export const Events: React.FC<EventsProps> = ({ events }) => {
+	const [zuluToggle, setZuluToggle] = useState(false);
+
 	return (
 		<Flex ml={2} backgroundColor="#13141c" w="50%" h="100%" flexDir="column">
 			<Flex backgroundColor="#101118" h="10%" w="100%" alignItems="center">
 				<Heading size="md" ml={4} color="teal.300">
-					Events (local time)
+					Events
 				</Heading>
+				<ButtonGroup spacing={4} isAttached ml="auto" p={4}>
+					<Button
+						variantColor="teal"
+						variant={!zuluToggle ? "solid" : "outline"}
+						size="xs"
+						onClick={() => setZuluToggle(false)}
+					>
+						Local
+					</Button>
+					<Button
+						variantColor="teal"
+						variant={zuluToggle ? "solid" : "outline"}
+						size="xs"
+						onClick={() => setZuluToggle(true)}
+					>
+						Zulu
+					</Button>
+				</ButtonGroup>
 			</Flex>
 			{events.map((event) => (
 				<Flex
@@ -49,17 +69,39 @@ export const Events: React.FC<EventsProps> = ({ events }) => {
 							{new Date(event.start_time).toLocaleDateString(["en-UK"])}
 						</Text>
 						<Text fontSize="sm" mx={1} color="teal.300">
-							{new Date(event.start_time).toLocaleTimeString([], {
+							{/* {new Date(event.start_time).toLocaleTimeString([], {
 								hour: "2-digit",
 								minute: "2-digit",
-							})}
+							})} */}
+							{zuluToggle
+								? new Date(event.start_time).toLocaleTimeString([], {
+										hour: "2-digit",
+										minute: "2-digit",
+										hour12: false,
+										timeZone: "UTC",
+								  }) + "Z"
+								: new Date(event.start_time).toLocaleTimeString([], {
+										hour: "2-digit",
+										minute: "2-digit",
+								  })}
 						</Text>
 						{"-"}
 						<Text fontSize="sm" mx={1} color="teal.300">
-							{new Date(event.end_time).toLocaleTimeString([], {
+							{/* {new Date(event.end_time).toLocaleTimeString([], {
 								hour: "2-digit",
 								minute: "2-digit",
-							})}
+							})} */}
+							{zuluToggle
+								? new Date(event.end_time).toLocaleTimeString([], {
+										hour: "2-digit",
+										minute: "2-digit",
+										hour12: false,
+										timeZone: "UTC",
+								  }) + "Z"
+								: new Date(event.end_time).toLocaleTimeString([], {
+										hour: "2-digit",
+										minute: "2-digit",
+								  })}
 						</Text>
 					</Flex>
 				</Flex>
