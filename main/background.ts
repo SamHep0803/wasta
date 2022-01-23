@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain, shell } from "electron";
 import serve from "electron-serve";
 import { createWindow } from "./helpers";
 import OAuth2Provider from "electron-oauth-helper/dist/oauth2";
@@ -35,6 +35,11 @@ let config;
 		mainWindow.webContents.openDevTools();
 		config = options.vatsimDev;
 	}
+
+	mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+		shell.openExternal(url);
+		return { action: "deny" };
+	});
 })();
 
 app.on("window-all-closed", () => {

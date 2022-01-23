@@ -1,4 +1,4 @@
-import { Flex, Heading, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import cookie from "cookie";
 import Cookie from "js-cookie";
 import { NextPage } from "next";
@@ -9,6 +9,8 @@ import {
 	getEventsAPI,
 	getOnlinevACCATCAPI,
 } from "../api/api";
+import { Events } from "../components/Events";
+import { Online } from "../components/Online";
 import { Sidebar } from "../components/Sidebar";
 import { Summary } from "../components/Summary";
 import { Controller } from "../interfaces/Controller";
@@ -16,9 +18,9 @@ import { Event } from "../interfaces/Event";
 import { User } from "../interfaces/User";
 
 interface IndexPageProps {
-	initialOnline: number;
-	initialDepartures: number;
-	initialArrivals: number;
+	initialOnline: string;
+	initialDepartures: string;
+	initialArrivals: string;
 }
 
 const IndexPage: NextPage<IndexPageProps> = ({
@@ -27,9 +29,15 @@ const IndexPage: NextPage<IndexPageProps> = ({
 	initialDepartures,
 }) => {
 	const [user, setUser] = useState<User>();
-	const [onlineATC, setOnlineATC] = useState<Controller[]>([]);
-	const [departures, setDepartures] = useState(0);
-	const [arrivals, setArrivals] = useState(0);
+	const [onlineATC, setOnlineATC] = useState<Controller[]>(
+		initialOnline ? JSON.parse(initialOnline) : []
+	);
+	const [departures, setDepartures] = useState(
+		initialDepartures ? parseInt(initialDepartures) : 0
+	);
+	const [arrivals, setArrivals] = useState(
+		initialArrivals ? parseInt(initialArrivals) : 0
+	);
 	const [events, setEvents] = useState<Event[]>([]);
 
 	useEffect(() => {
@@ -47,8 +55,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
 			getOnline();
 			getDepartures();
 			getArrivals();
-			console.log("call");
-		}, 10000);
+		}, 120000);
 
 		return () => {
 			clearInterval(refresh);
@@ -57,7 +64,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
 
 	const getOnline = async () => {
 		const online = await getOnlinevACCATCAPI();
-		Cookie.set("online", JSON.stringify(online.length));
+		Cookie.set("online", JSON.stringify(online));
 		setOnlineATC(online);
 	};
 
@@ -75,8 +82,6 @@ const IndexPage: NextPage<IndexPageProps> = ({
 
 	const getEvents = async () => {
 		const events = await getEventsAPI();
-		// console.log(JSON.stringify(events));
-		// Cookie.set("events", JSON.stringify(events));
 		setEvents(events);
 	};
 
@@ -92,80 +97,13 @@ const IndexPage: NextPage<IndexPageProps> = ({
 					flexDir="column"
 				>
 					<Summary
-						onlineATC={initialOnline ? initialOnline : onlineATC.length}
-						departures={initialDepartures ? initialDepartures : departures}
-						arrivals={initialArrivals ? initialArrivals : arrivals}
+						onlineATC={onlineATC.length}
+						departures={departures}
+						arrivals={arrivals}
 					/>
 					<Flex h="100%" mb={4} mx={4}>
-						<Flex mr={2} backgroundColor="#13141c" w="50%" h="100%">
-							<Flex
-								backgroundColor="#101118"
-								h="10%"
-								w="100%"
-								alignItems="center"
-							>
-								<Heading size="md" ml={4} color="teal.300">
-									Online ATC
-								</Heading>
-							</Flex>
-						</Flex>
-						<Flex
-							ml={2}
-							backgroundColor="#13141c"
-							w="50%"
-							h="100%"
-							flexDir="column"
-						>
-							<Flex
-								backgroundColor="#101118"
-								h="10%"
-								w="100%"
-								alignItems="center"
-							>
-								<Heading size="md" ml={4} color="teal.300">
-									Events (local time)
-								</Heading>
-							</Flex>
-							{events.map((event) => (
-								<Flex
-									key={event.id}
-									backgroundColor="#13141c"
-									h="10%"
-									w="100%"
-									alignItems="center"
-									px={2}
-									borderBottom="1px"
-									borderColor="teal.900"
-								>
-									<Flex alignItems="baseline">
-										<Heading size="sm" ml={4} mr={2} color="teal.300">
-											{event.name}
-										</Heading>
-										<Text
-											fontSize="sm"
-											mx={2}
-											color="teal.300"
-											style={{ textDecoration: "underline" }}
-										>
-											{new Date(event.start_time).toLocaleDateString(["en-UK"])}
-										</Text>
-										<Text fontSize="sm" mx={1} color="teal.300">
-											{new Date(event.start_time).toLocaleTimeString([], {
-												hour: "2-digit",
-												minute: "2-digit",
-											})}
-										</Text>
-										{"-"}
-										<Text fontSize="sm" mx={1} color="teal.300">
-											{new Date(event.end_time).toLocaleTimeString([], {
-												hour: "2-digit",
-												minute: "2-digit",
-											})}
-										</Text>
-									</Flex>
-								</Flex>
-							))}
-						</Flex>
+						<Online onlineATC={onlineATC} />
+						<Events events={events} />
 					</Flex>
 				</Flex>
 			</Flex>

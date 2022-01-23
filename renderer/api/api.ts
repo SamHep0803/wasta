@@ -4,6 +4,7 @@ import { Pilot } from "../interfaces/Pilot";
 import { User } from "../interfaces/User";
 import { checkCallsign } from "../utils/checkCallsign";
 import { Event } from "../interfaces/Event";
+import { removeDuplicates } from "../utils/removeDuplicates";
 
 export const getUser = async (accessToken: string): Promise<User | null> => {
 	try {
@@ -101,7 +102,7 @@ export const getEventsAPI = async (): Promise<Event[]> => {
 		if (!accEvents) {
 			return [];
 		}
-		return accEvents;
+		return removeDuplicates(accEvents);
 	} catch (error) {
 		console.error(error);
 	}
