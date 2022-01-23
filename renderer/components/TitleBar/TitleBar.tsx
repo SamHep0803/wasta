@@ -11,7 +11,7 @@ export const TitleBar: React.FC<TitleBarProps> = ({}) => {
 	};
 
 	return (
-		<Flex bg="#0f0f13">
+		<Flex bg="#111111">
 			<Flex className={styles.titleBar} py={3} h="100%" w="100%" />
 			<Flex
 				backgroundColor="red"

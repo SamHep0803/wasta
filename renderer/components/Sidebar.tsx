@@ -18,9 +18,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
 	};
 
 	return (
-		<Flex w="25%" h="100%" flexDir="column" backgroundColor="#252530">
-			<Heading size="2xl" mt={4} mb={6} alignSelf="center">
-				wasta
+		<Flex w="25%" h="100%" flexDir="column" backgroundColor="#1b1b1b">
+			<Heading
+				size="2xl"
+				mt={4}
+				mb={6}
+				alignSelf="center"
+				color="primary.400"
+				fontWeight="extrabold"
+			>
+				wasta.
 			</Heading>
 			<Divider mb={6} />
 			<Flex>
@@ -69,31 +76,33 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
 				<Button
 					as="a"
 					variant="ghost"
-					backgroundColor={router.pathname === "/" ? "teal.800" : null}
 					_hover={{
-						backgroundColor: "teal.700",
+						color: "secondary.300",
 					}}
-					color="teal.300"
+					color={router.pathname === "/" ? "primary.400" : "white"}
 					aria-label="Dashboard"
 					mx={6}
 					mb={2}
+					fontSize="xl"
+					size="lg"
 				>
-					Home
+					HOME
 				</Button>
 			</NextLink>
 			<NextLink href="/briefing">
 				<Button
 					as="a"
 					variant="ghost"
-					backgroundColor={router.pathname === "/briefing" ? "teal.800" : null}
 					_hover={{
-						backgroundColor: "teal.700",
+						color: "secondary.300",
 					}}
-					color="teal.300"
+					color={router.pathname === "/briefing" ? "primary.400" : "white"}
 					aria-label="Briefing"
 					mx={6}
+					fontSize="xl"
+					size="lg"
 				>
-					Briefing
+					BRIEFING
 				</Button>
 			</NextLink>
 		</Flex>

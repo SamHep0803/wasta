@@ -93,7 +93,7 @@ const IndexPage: NextPage<IndexPageProps> = ({
 					flex={1}
 					w="100%"
 					h="100%"
-					backgroundColor="#18181f"
+					backgroundColor="bg.900"
 					flexDir="column"
 				>
 					<Summary

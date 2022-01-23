@@ -1,4 +1,11 @@
-import { Flex } from "@chakra-ui/react";
+import {
+	Flex,
+	Tab,
+	TabList,
+	TabPanel,
+	TabPanels,
+	Tabs,
+} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Sidebar } from "../components/Sidebar";
 import { User } from "../interfaces/User";
@@ -18,7 +25,24 @@ const BriefingPage = () => {
 		return (
 			<Flex overflowY="hidden" h="100%">
 				<Sidebar user={user} />
-				<Flex flex={1} w="100%" h="100%" backgroundColor="#18181f"></Flex>
+				<Flex flex={1} w="100%" h="100%" backgroundColor="bg.900">
+					<Flex w="100%">
+						<Tabs variant="enclosed" mt={2} w="100%" ml={2}>
+							<TabList>
+								<Tab>One</Tab>
+								<Tab>Two</Tab>
+							</TabList>
+							<TabPanels>
+								<TabPanel>
+									<p>one!</p>
+								</TabPanel>
+								<TabPanel>
+									<p>two!</p>
+								</TabPanel>
+							</TabPanels>
+						</Tabs>
+					</Flex>
+				</Flex>
 			</Flex>
 		);
 	}

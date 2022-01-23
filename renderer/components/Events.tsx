@@ -10,14 +10,14 @@ export const Events: React.FC<EventsProps> = ({ events }) => {
 	const [zuluToggle, setZuluToggle] = useState(false);
 
 	return (
-		<Flex ml={2} backgroundColor="#13141c" w="50%" h="100%" flexDir="column">
-			<Flex backgroundColor="#101118" h="10%" w="100%" alignItems="center">
-				<Heading size="md" ml={4} color="teal.300">
+		<Flex ml={2} backgroundColor="#111111" w="50%" h="100%" flexDir="column">
+			<Flex backgroundColor="#0f0f0f" h="10%" w="100%" alignItems="center">
+				<Heading size="md" ml={4} color="text">
 					Events
 				</Heading>
 				<ButtonGroup spacing={4} isAttached ml="auto" p={4}>
 					<Button
-						variantColor="teal"
+						colorScheme="secondary"
 						variant={!zuluToggle ? "solid" : "outline"}
 						size="xs"
 						onClick={() => setZuluToggle(false)}
@@ -25,7 +25,7 @@ export const Events: React.FC<EventsProps> = ({ events }) => {
 						Local
 					</Button>
 					<Button
-						variantColor="teal"
+						colorScheme="secondary"
 						variant={zuluToggle ? "solid" : "outline"}
 						size="xs"
 						onClick={() => setZuluToggle(true)}
@@ -37,7 +37,6 @@ export const Events: React.FC<EventsProps> = ({ events }) => {
 			{events.map((event) => (
 				<Flex
 					key={event.id}
-					backgroundColor="#13141c"
 					h="10%"
 					w="100%"
 					alignItems="center"
@@ -50,7 +49,7 @@ export const Events: React.FC<EventsProps> = ({ events }) => {
 							size="sm"
 							ml={4}
 							mr={2}
-							color="teal.300"
+							color="text"
 							as="a"
 							href={event.link}
 							target="_blank"
@@ -63,12 +62,12 @@ export const Events: React.FC<EventsProps> = ({ events }) => {
 						<Text
 							fontSize="sm"
 							mx={2}
-							color="teal.300"
+							color="text"
 							style={{ textDecoration: "underline" }}
 						>
 							{new Date(event.start_time).toLocaleDateString(["en-UK"])}
 						</Text>
-						<Text fontSize="sm" mx={1} color="teal.300">
+						<Text fontSize="sm" mx={1} color="text">
 							{/* {new Date(event.start_time).toLocaleTimeString([], {
 								hour: "2-digit",
 								minute: "2-digit",
@@ -86,7 +85,7 @@ export const Events: React.FC<EventsProps> = ({ events }) => {
 								  })}
 						</Text>
 						{"-"}
-						<Text fontSize="sm" mx={1} color="teal.300">
+						<Text fontSize="sm" mx={1} color="text">
 							{/* {new Date(event.end_time).toLocaleTimeString([], {
 								hour: "2-digit",
 								minute: "2-digit",

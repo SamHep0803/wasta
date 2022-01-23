@@ -1,0 +1,16 @@
+{
+	"airportName": "Dubai International Airport",
+	"icao": "OMDB",
+	"latitude": 25.25,
+	"longitude": 55.364444,
+	"altitude": 0,
+	"country": "United Arab Emirates",
+	"briefing": {
+		"positions": [
+			{
+				"callsign": "OMDB_DEL",
+				"frequency": "120.350"
+			}
+		]
+	}
+}

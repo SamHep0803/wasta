@@ -28,6 +28,13 @@ export const getOnlinevACCATCAPI = async (): Promise<Controller[]> => {
 		controllers.forEach((controller) => {
 			if (controller.facility !== 0) {
 				if (checkCallsign(controller.callsign)) {
+					if (controller.cid === 1589839) {
+						controller.name = "⚠️Brazoota 2.0⚠️";
+						// new Notification("⚠️HARAM ALERT HARAM ALERT⚠️", {
+						// 	body: "Brazoota 2.0 is online",
+						// 	silent: true,
+						// });
+					}
 					online.push(controller);
 				}
 			}
