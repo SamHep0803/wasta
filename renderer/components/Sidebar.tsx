@@ -31,7 +31,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
 			</Heading>
 			<Divider mb={6} />
 			<Flex>
-				<Flex bg="#2c2c3a" w="100%" p={4} mb={6} mx={6}>
+				<Flex bg="bg.800" w="100%" p={4} mb={6} mx={6} color="text">
 					<Avatar
 						name={user.personal.name_full}
 						mr={3}
@@ -47,7 +47,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
 				</Flex>
 			</Flex>
 			<Button
-				color="teal.300"
+				color="primary.300"
 				variant="solid"
 				size="sm"
 				mb={6}
@@ -75,7 +75,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
 			<NextLink href="/">
 				<Button
 					as="a"
-					variant="ghost"
+					variant={router.pathname === "/" ? "solid" : "ghost"}
 					_hover={{
 						color: "secondary.300",
 					}}
@@ -85,6 +85,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
 					mb={2}
 					fontSize="xl"
 					size="lg"
+					_focus={{}}
 				>
 					HOME
 				</Button>
@@ -92,7 +93,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ user }) => {
 			<NextLink href="/briefing">
 				<Button
 					as="a"
-					variant="ghost"
+					variant={router.pathname === "/briefing" ? "solid" : "ghost"}
 					_hover={{
 						color: "secondary.300",
 					}}

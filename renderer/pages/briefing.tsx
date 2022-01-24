@@ -27,15 +27,13 @@ const BriefingPage = () => {
 				<Sidebar user={user} />
 				<Flex flex={1} w="100%" h="100%" backgroundColor="bg.900">
 					<Flex w="100%">
-						<Tabs variant="enclosed" mt={2} w="100%" ml={2}>
+						<Tabs mt={2} w="100%" ml={2}>
 							<TabList>
 								<Tab>One</Tab>
 								<Tab>Two</Tab>
 							</TabList>
 							<TabPanels>
-								<TabPanel>
-									<p>one!</p>
-								</TabPanel>
+								<TabPanel></TabPanel>
 								<TabPanel>
 									<p>two!</p>
 								</TabPanel>

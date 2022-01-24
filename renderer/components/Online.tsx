@@ -34,7 +34,7 @@ export const Online: React.FC<OnlineProps> = ({ onlineATC }) => {
 								{controller.name}
 							</Heading>
 							<Heading size="xs" ml={4} color="#cccccc">
-								Time online:{" "}
+								{/* Time online:{" "} */}
 								{msToTime(
 									Date.now() - new Date(controller.logon_time).getTime()
 								)}
