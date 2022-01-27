@@ -3,6 +3,7 @@ export interface User {
 	personal: Personal;
 	vatsim: Vatsim;
 	oauth: Oauth;
+	status?: number;
 }
 
 interface Oauth {

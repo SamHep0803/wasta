@@ -67,7 +67,7 @@ export const Events: React.FC<EventsProps> = ({ events }) => {
 						>
 							{new Date(event.start_time).toLocaleDateString(["en-UK"])}
 						</Text>
-						<Text fontSize="sm" mx={1} color="text">
+						<Text fontSize="xs" mx={1} color="text">
 							{/* {new Date(event.start_time).toLocaleTimeString([], {
 								hour: "2-digit",
 								minute: "2-digit",
@@ -85,7 +85,7 @@ export const Events: React.FC<EventsProps> = ({ events }) => {
 								  })}
 						</Text>
 						{"-"}
-						<Text fontSize="sm" mx={1} color="text">
+						<Text fontSize="xs" mx={1} color="text">
 							{/* {new Date(event.end_time).toLocaleTimeString([], {
 								hour: "2-digit",
 								minute: "2-digit",

@@ -30,13 +30,19 @@ const IndexPage: NextPage<IndexPageProps> = ({
 }) => {
 	const [user, setUser] = useState<User>();
 	const [onlineATC, setOnlineATC] = useState<Controller[]>(
-		initialOnline ? JSON.parse(initialOnline) : []
+		initialOnline && initialOnline !== "undefined"
+			? JSON.parse(initialOnline)
+			: []
 	);
 	const [departures, setDepartures] = useState(
-		initialDepartures ? parseInt(initialDepartures) : 0
+		initialDepartures && initialOnline !== "undefined"
+			? parseInt(initialDepartures)
+			: 0
 	);
 	const [arrivals, setArrivals] = useState(
-		initialArrivals ? parseInt(initialArrivals) : 0
+		initialArrivals && initialArrivals !== "undefined"
+			? parseInt(initialArrivals)
+			: 0
 	);
 	const [events, setEvents] = useState<Event[]>([]);
 

@@ -8,7 +8,7 @@ const LoginPage = () => {
 		const localUser = window.localStorage.getItem("user");
 		if (localUser) {
 			getUser(window.localStorage.getItem("access_token")).then((user) => {
-				if (!user.oauth.token_valid) {
+				if (user.status === 401) {
 					ipcRenderer.send("oauth-login");
 				} else {
 					window.location.href = "/";
