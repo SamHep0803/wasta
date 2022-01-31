@@ -9,6 +9,8 @@ function MyApp({ Component, pageProps }) {
 				<style jsx global>{`
 					body {
 						user-select: none;
+						scrollbar-width: thin; /* "auto" or "thin" */
+						scrollbar-color: blue orange;
 					}
 
 					html,
@@ -17,6 +19,16 @@ function MyApp({ Component, pageProps }) {
 						max-height: 100%;
 						height: 100%;
 						width: 100%;
+					}
+
+					/* Works on Chrome, Edge, and Safari */
+					*::-webkit-scrollbar {
+						width: 6px;
+					}
+
+					*::-webkit-scrollbar-thumb {
+						background-color: var(--chakra-colors-primary-500);
+						border-radius: 20px;
 					}
 				`}</style>
 
