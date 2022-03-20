@@ -20,10 +20,14 @@ let config;
 	await app.whenReady();
 
 	const mainWindow = createWindow("main", {
-		width: 1100,
+		width: 1200,
 		height: 700,
+		minWidth: 1200,
+		maxWidth: 1200,
+		minHeight: 700,
+		maxHeight: 700,
 		frame: false,
-		resizable: false,
+		resizable: true,
 	});
 
 	if (isProd) {
