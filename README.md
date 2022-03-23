@@ -17,8 +17,8 @@
 $ git clone https://github.com/SamHep0803/wasta.git
 
 # using yarn or npm
-$ yarn (or `npm install`)
+$ yarn (or 'npm install')
 
 # run dev enviroment
-$ yarn dev (or npm run dev)
+$ yarn dev (or 'npm run dev')
 ```
